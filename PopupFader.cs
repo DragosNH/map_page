@@ -8,10 +8,16 @@ public class PopupFader : MonoBehaviour
 
     public void FadeIn()
     {
-        targetGroup.alpha = 0f;
-        targetGroup.interactable = true;
-        targetGroup.blocksRaycasts = true;
-        gameObject.SetActive(true);
+        Debug.Log("FadeIn called");
+        Debug.Log("targetGroup is " + (targetGroup == null ? "null" : "set"));
+
+        if (targetGroup != null)
+        {
+            targetGroup.alpha = 0f;
+            targetGroup.interactable = true;
+            targetGroup.blocksRaycasts = true;
+        }
+
         StopAllCoroutines();
         StartCoroutine(FadeCanvas(true));
     }
