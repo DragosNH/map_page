@@ -8,5 +8,20 @@ using Unity.VisualScripting;
 
 public class MapScene : MonoBehaviour
 {
+    public GameObject popupMenu;
+    public PopupFader popupFader;
+    // Drag andler
+   
+
+    public void ShowPopUpMenu()
+    {
+        popupMenu.SetActive(true);
+        popupFader.FadeIn();
+    }
+
+    public void HidePopupMenu()
+    {
+        popupFader.FadeOut();
+    }
 
 }
