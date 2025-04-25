@@ -4,29 +4,32 @@ using UnityEngine;
 public class PopupFader : MonoBehaviour
 {
     public CanvasGroup targetGroup;
+    public float fadeDuration = 0.5f;
 
     public void FadeIn()
     {
         targetGroup.alpha = 0f;
         targetGroup.interactable = true;
-        targetGroup.blockRaycasts = true;
+        targetGroup.blocksRaycasts = true;
         gameObject.SetActive(true);
         StopAllCoroutines();
+        StartCoroutine(FadeCanvas(true));
     }
 
     public void FadeOut()
     {
         StopAllCoroutines();
+        StartCoroutine(FadeCanvas(false));
     }
 
-    pribvate IEnumerator FadeCanvas(bool show)
+    private IEnumerator FadeCanvas(bool show)
     {
         float startAlpha = targetGroup.alpha;
         float endAlpha = show ? 1f : 0f;
         float elapsed = 0f;
 
         targetGroup.interactable = show;
-        targetGroup.blockRaycasts = show;
+        targetGroup.blocksRaycasts = show;
 
         while (elapsed < fadeDuration)
         {
